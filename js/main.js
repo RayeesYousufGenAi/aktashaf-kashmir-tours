@@ -540,29 +540,34 @@ if (dateInputs.length > 0 && typeof flatpickr !== 'undefined') {
 // ===================================
 
 // Enhanced Image Lazy Loading with Fade-in Effect
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    
+
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.addEventListener('load', () => {
+                    // Check if image is already loaded (cached)
+                    if (img.complete && img.naturalWidth > 0) {
                         img.classList.add('loaded');
-                    });
+                    } else {
+                        img.addEventListener('load', () => {
+                            img.classList.add('loaded');
+                        });
+                    }
                     observer.unobserve(img);
                 }
             });
         });
-        
+
         lazyImages.forEach(img => imageObserver.observe(img));
     }
-    
+
     // Scroll-triggered Animations
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.tour-package-card, .destination-card, .testimonial-card');
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -576,12 +581,12 @@ document.addEventListener('DOMContentLoaded', function() {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         });
-        
+
         elements.forEach(el => observer.observe(el));
     };
-    
+
     animateOnScroll();
-    
+
     // Performance Monitoring (optional - for development)
     if (window.performance && window.performance.timing) {
         window.addEventListener('load', () => {
@@ -592,31 +597,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 0);
         });
     }
-    
+
     // Add smooth hover effects to cards
     const cards = document.querySelectorAll('.tour-package-card, .destination-card, .premium-card');
     cards.forEach(card => {
         card.classList.add('hover-lift');
     });
-    
+
     // Enhanced form feedback
     const formInputs = document.querySelectorAll('input, textarea, select');
     formInputs.forEach(input => {
-        input.addEventListener('blur', function() {
+        input.addEventListener('blur', function () {
             if (this.value.trim() !== '') {
                 this.classList.add('filled');
             } else {
                 this.classList.remove('filled');
             }
         });
-        
+
         // Add validation feedback
-        input.addEventListener('invalid', function(e) {
+        input.addEventListener('invalid', function (e) {
             e.preventDefault();
             this.classList.add('error');
         });
-        
-        input.addEventListener('input', function() {
+
+        input.addEventListener('input', function () {
             this.classList.remove('error');
         });
     });
@@ -639,7 +644,7 @@ function debounce(func, wait) {
 const handleScroll = debounce(() => {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('[data-parallax]');
-    
+
     parallaxElements.forEach(el => {
         const speed = el.dataset.parallax || 0.5;
         el.style.transform = `translateY(${scrolled * speed}px)`;
