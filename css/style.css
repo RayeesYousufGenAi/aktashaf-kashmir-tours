@@ -2182,6 +2182,7 @@ span.flatpickr-weekday {
     background: transparent !important;
     border-color: transparent !important;
 }
+
 /* ===================================
    MODERN UTILITY CLASSES & ENHANCEMENTS
    =================================== */
@@ -2192,6 +2193,7 @@ span.flatpickr-weekday {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -2199,8 +2201,13 @@ span.flatpickr-weekday {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideInLeft {
@@ -2208,6 +2215,7 @@ span.flatpickr-weekday {
         opacity: 0;
         transform: translateX(-50px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -2219,6 +2227,7 @@ span.flatpickr-weekday {
         opacity: 0;
         transform: translateX(50px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -2230,6 +2239,7 @@ span.flatpickr-weekday {
         opacity: 0;
         transform: scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -2315,8 +2325,13 @@ span.flatpickr-weekday {
 }
 
 @keyframes loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 /* Pulse Animation */
@@ -2325,9 +2340,12 @@ span.flatpickr-weekday {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.5;
     }
@@ -2359,17 +2377,9 @@ img {
     display: block;
 }
 
-img[loading="lazy"] {
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-img[loading="lazy"].loaded {
-    opacity: 1;
-}
-
 /* Performance Optimizations */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -2382,18 +2392,19 @@ img[loading="lazy"].loaded {
 
 /* Print Styles */
 @media print {
+
     .no-print,
     .header,
     .footer,
     .mobile-cta-bar {
         display: none !important;
     }
-    
+
     body {
         background: white;
         color: black;
     }
-    
+
     a {
         text-decoration: underline;
     }
@@ -2404,20 +2415,42 @@ img[loading="lazy"].loaded {
     :root {
         --section-padding: 60px 0;
     }
-    
-    h1 { font-size: 32px; }
-    h2 { font-size: 28px; }
-    h3 { font-size: 24px; }
-    h4 { font-size: 20px; }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 480px) {
     :root {
         --section-padding: 40px 0;
     }
-    
-    h1 { font-size: 28px; }
-    h2 { font-size: 24px; }
-    h3 { font-size: 20px; }
-    h4 { font-size: 18px; }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
 }
