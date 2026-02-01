@@ -1,0 +1,22 @@
+{
+    "name": "Aktashaf Kashmir",
+    "short_name": "Aktashaf",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#FDB714",
+    "description": "Your Gateway to Paradise on Earth - Premium Kashmir Tour Packages",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "images/logo-new.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo-new.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

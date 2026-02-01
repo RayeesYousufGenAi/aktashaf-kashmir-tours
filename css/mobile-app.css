@@ -1,0 +1,241 @@
+/* ===================================
+   MOBILE APP-LIKE EXPERIENCE ENHANCEMENTS
+   =================================== */
+
+/* Mobile Bottom Fixed CTA Bar */
+.mobile-cta-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, rgba(26, 35, 50, 0.95) 0%, rgba(26, 35, 50, 0.98) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 20px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-cta-bar.visible {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideUpCTA 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUpCTA {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mobile-cta-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    min-height: 48px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.mobile-cta-button:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.mobile-cta-call {
+    background: var(--primary-gradient);
+    color: #1a2332;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+}
+
+.mobile-cta-call:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.4);
+}
+
+.mobile-cta-whatsapp {
+    background: #25D366;
+    color: white;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.mobile-cta-whatsapp:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.4);
+}
+
+.mobile-cta-button i {
+    font-size: 18px;
+}
+
+/* Enhanced Touch Targets - Minimum 48x48px */
+@media (max-width: 768px) {
+
+    /* Navigation Links */
+    .nav-link {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+    }
+
+    /* Buttons */
+    button,
+    .btn,
+    .btn-submit,
+    .btn-explore,
+    .btn-call,
+    .btn-soft-cta,
+    .btn-sidebar-call {
+        min-height: 48px;
+        min-width: 48px;
+        padding: 12px 24px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Links */
+    a {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 12px;
+    }
+
+    /* Phone Number Button */
+    .phone-number {
+        min-height: 48px;
+        padding: 10px 16px;
+    }
+
+    /* Hide floating buttons on mobile - we have the CTA bar instead */
+    .whatsapp-float,
+    .call-float {
+        display: none !important;
+    }
+
+    /* Form Inputs */
+    input,
+    select,
+    textarea {
+        min-height: 48px;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+        padding: 12px 16px;
+    }
+
+    /* Package Cards */
+    .package-card,
+    .blog-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Smooth Transitions for All Interactive Elements */
+a,
+button,
+input,
+select,
+textarea,
+.card,
+.package-card,
+.blog-card,
+.nav-link,
+.btn {
+    transition: var(--transition-smooth);
+}
+
+/* Enhanced Active States for Touch Feedback */
+@media (max-width: 768px) {
+
+    button:active,
+    .btn:active,
+    a.btn:active {
+        transform: scale(0.96);
+    }
+
+    .nav-link:active {
+        background: rgba(255, 107, 0, 0.1);
+    }
+
+    .package-card:active,
+    .blog-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: var(--primary-orange);
+        box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        outline: none;
+    }
+}
+
+/* Prevent Text Selection on Buttons (Better App Feel) */
+button,
+.btn,
+.mobile-cta-button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add padding to body when mobile CTA bar is visible */
+@media (max-width: 768px) {
+    body.mobile-cta-active {
+        padding-bottom: 80px;
+    }
+
+    /* Force visibility of CTA bar on mobile without JS dependency */
+    .mobile-cta-bar {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        animation: slideUpCTA 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
