@@ -534,3 +534,117 @@ if (dateInputs.length > 0 && typeof flatpickr !== 'undefined') {
     const today = new Date().toISOString().split('T')[0];
     dateInputs.forEach(input => input.setAttribute('min', today));
 }
+
+// ===================================
+// MODERN ENHANCEMENTS
+// ===================================
+
+// Enhanced Image Lazy Loading with Fade-in Effect
+document.addEventListener('DOMContentLoaded', function() {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.addEventListener('load', () => {
+                        img.classList.add('loaded');
+                    });
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    }
+    
+    // Scroll-triggered Animations
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.tour-package-card, .destination-card, .testimonial-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-fade-in-up');
+                    }, index * 100); // Stagger animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        elements.forEach(el => observer.observe(el));
+    };
+    
+    animateOnScroll();
+    
+    // Performance Monitoring (optional - for development)
+    if (window.performance && window.performance.timing) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = window.performance.timing;
+                const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                console.log(`%cPage Load Time: ${pageLoadTime}ms`, 'color: #00b894; font-weight: bold;');
+            }, 0);
+        });
+    }
+    
+    // Add smooth hover effects to cards
+    const cards = document.querySelectorAll('.tour-package-card, .destination-card, .premium-card');
+    cards.forEach(card => {
+        card.classList.add('hover-lift');
+    });
+    
+    // Enhanced form feedback
+    const formInputs = document.querySelectorAll('input, textarea, select');
+    formInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value.trim() !== '') {
+                this.classList.add('filled');
+            } else {
+                this.classList.remove('filled');
+            }
+        });
+        
+        // Add validation feedback
+        input.addEventListener('invalid', function(e) {
+            e.preventDefault();
+            this.classList.add('error');
+        });
+        
+        input.addEventListener('input', function() {
+            this.classList.remove('error');
+        });
+    });
+});
+
+// Debounce function for performance
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Optimized scroll handler
+const handleScroll = debounce(() => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    
+    parallaxElements.forEach(el => {
+        const speed = el.dataset.parallax || 0.5;
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+}, 10);
+
+window.addEventListener('scroll', handleScroll, { passive: true });
+
