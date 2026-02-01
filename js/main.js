@@ -539,31 +539,7 @@ if (dateInputs.length > 0 && typeof flatpickr !== 'undefined') {
 // MODERN ENHANCEMENTS
 // ===================================
 
-// Enhanced Image Lazy Loading with Fade-in Effect
 document.addEventListener('DOMContentLoaded', function () {
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    // Check if image is already loaded (cached)
-                    if (img.complete && img.naturalWidth > 0) {
-                        img.classList.add('loaded');
-                    } else {
-                        img.addEventListener('load', () => {
-                            img.classList.add('loaded');
-                        });
-                    }
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        lazyImages.forEach(img => imageObserver.observe(img));
-    }
-
     // Scroll-triggered Animations
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.tour-package-card, .destination-card, .testimonial-card');
