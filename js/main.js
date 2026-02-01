@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ===================================
     console.log('%c🏔️ Welcome to AKTASHAF KASHMIR 🏔️', 'color: #FF6B00; font-size: 20px; font-weight: bold;');
     console.log('%cExplore the Paradise on Earth!', 'color: #FDB714; font-size: 14px;');
-    console.log('%cContact: +91 9796664664 | aktashafkmr@gmail.com', 'color: #666; font-size: 12px;');
+    console.log('%cContact: +91 9876543210 | aktashafkmr@gmail.com', 'color: #666; font-size: 12px;');
 
     // ===================================
     // MOBILE CTA BAR LOGIC
